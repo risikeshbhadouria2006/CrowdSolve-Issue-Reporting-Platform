@@ -1,0 +1,582 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Issues – CrowdSolve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="ai-assistant.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4F46E5', // Indigo
+                        'secondary': '#22C55E', // Emerald
+                        'bg-light': '#F3F4F6', // Light Gray
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white antialiased transition-colors duration-300"
+    style="padding-top: 64px;">
+    <nav
+        class="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-lg z-50 transition-colors duration-300 border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex-shrink-0 text-2xl font-bold text-primary nav-logo-animated">
+                    <i class="fas fa-bullhorn mr-2"></i>CrowdSolve
+                </a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_home">Home</a>
+                    <a href="issues.html"
+                        class="text-primary dark:text-white font-bold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_view_issues">View Issues</a>
+                    <a href="report.html?v=1"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_report_issue">Report Issue</a>
+                    <a href="about.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_about">About Us</a>
+                    <a href="contact.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_contact">Contact</a>
+                    <button id="dark-mode-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 nav-btn-animated"
+                        aria-label="Toggle dark mode">
+                        <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                    </button>
+                    <div class="relative inline-block text-left nav-btn-animated">
+                        <select id="lang-selector"
+                            class="block w-full pl-3 pr-10 py-2 text-lg border-green-600 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-base rounded-md cursor-pointer bg-green-600 font-bold text-white hover:bg-green-700 transition duration-150 appearance-none">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <label class="burger md:hidden" for="burger">
+                    <input type="checkbox" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+            id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_home">Home</a>
+                <a href="issues.html"
+                    class="block px-3 py-2 rounded-md text-base font-bold bg-primary text-white shadow-md"
+                    data-i18n="nav_view_issues">View Issues</a>
+                <a href="report.html?v=1"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_report_issue">Report Issue</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_about">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_contact">Contact</a>
+                <div
+                    class="px-3 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-4">
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                        data-i18n="nav_toggle_theme">Toggle Theme</span>
+                    <button id="mobile-dark-mode-toggle"
+                        class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-150">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="px-3 py-2">
+                    <label for="mobile-lang-selector"
+                        class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                        <i class="fas fa-language mr-2"></i><span data-i18n="nav_select_lang">Select
+                            Language</span></label>
+                    <select id="mobile-lang-selector"
+                        class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md transition-colors duration-200">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="mr">मराठी (Marathi)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                        <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-12 md:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-8 text-center"><i
+                    class="fas fa-list-ul mr-2 text-primary"></i><span data-i18n="issues_title">Community Issues
+                    Tracker</span></h1>
+
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg mb-8 transition-colors duration-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
+                    <div class="lg:col-span-2">
+                        <div class="relative">
+                            <input type="text" id="search-issues" placeholder="Search issues by title or description..."
+                                data-i18n="search_placeholder"
+                                class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-primary focus:border-primary transition duration-150 shadow-sm pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400">
+                            <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <select id="filter-category"
+                            class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-primary focus:border-primary transition duration-150 shadow-sm appearance-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <option value="all" data-i18n="filter_cat_all">All Categories</option>
+                            <option value="Roads" data-i18n="filter_cat_roads">Roads</option>
+                            <option value="Garbage" data-i18n="filter_cat_garbage">Garbage</option>
+                            <option value="Electricity" data-i18n="filter_cat_electricity">Electricity</option>
+                            <option value="Water" data-i18n="filter_cat_water">Water</option>
+                            <option value="Public Safety" data-i18n="filter_cat_safety">Public Safety</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="filter-status"
+                            class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-primary focus:border-primary transition duration-150 shadow-sm appearance-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <option value="all" data-i18n="filter_status_all">All Statuses</option>
+                            <option value="Pending" data-i18n="filter_status_pending">Pending</option>
+                            <option value="In Progress" data-i18n="filter_status_progress">In Progress</option>
+                            <option value="Resolved" data-i18n="filter_status_resolved">Resolved</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="filter-priority"
+                            class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-primary focus:border-primary transition duration-150 shadow-sm appearance-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <option value="all" data-i18n="filter_priority_all">All Priorities</option>
+                            <option value="High" data-i18n="filter_priority_high">High</option>
+                            <option value="Medium" data-i18n="filter_priority_medium">Medium</option>
+                            <option value="Low" data-i18n="filter_priority_low">Low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8" id="issues-container">
+                <!-- Issues will be loaded here dynamically -->
+            </div>
+
+            <div id="no-issues-message"
+                class="lg:col-span-3 text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg mt-8 hidden transition-colors duration-300">
+                <p class="text-xl text-gray-600 dark:text-gray-300 font-semibold"><i
+                        class="fas fa-info-circle mr-2"></i><span data-i18n="no_issues_msg">No issues match the current
+                        filters.</span></p>
+                <p class="text-gray-500 dark:text-gray-400 mt-2" data-i18n="no_issues_sub">Try adjusting your category
+                    or status selection.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Issue Details Modal -->
+    <div id="issue-details-modal" style="z-index: 9999;" class="fixed inset-0 hidden overflow-y-auto"
+        aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+            onclick="closeModal()"></div>
+
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            <div
+                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+
+                <!-- Close Button -->
+                <div class="absolute top-0 right-0 pt-4 pr-4 z-10">
+                    <button type="button"
+                        class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
+                        onclick="closeModal()">
+                        <span class="sr-only">Close</span>
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Content -->
+                <div class="bg-white dark:bg-gray-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 transition-colors duration-300">
+                    <div class="sm:flex sm:items-start flex-col">
+
+                        <!-- Image -->
+                        <div class="w-full h-64 rounded-xl overflow-hidden mb-6 relative group">
+                            <img id="modal-image" src="" alt="Issue Image"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 left-4 flex gap-2" id="modal-badges">
+                                <!-- Badges injected here -->
+                            </div>
+                        </div>
+
+                        <div class="w-full">
+                            <h3 class="text-2xl font-bold leading-6 text-gray-900 dark:text-white mb-2"
+                                id="modal-title">Issue Title
+                            </h3>
+
+                            <div class="flex items-center text-sm text-gray-700 dark:text-gray-300 mb-4">
+                                <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
+                                <span id="modal-address">123 Main St, City</span>
+                                <span class="mx-2">•</span>
+                                <i class="far fa-clock mr-2 text-gray-600 dark:text-gray-400"></i>
+                                <span id="modal-date">2 days ago</span>
+                            </div>
+
+                            <div
+                                class="prose max-w-none text-gray-800 dark:text-gray-200 mb-6 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <p id="modal-description">Description goes here...</p>
+                            </div>
+
+                            <div
+                                class="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-lg mr-3">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-gray-900 dark:text-white" id="modal-reporter">
+                                            Reporter Name
+                                        </p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">Community Member</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4">
+                                    <div class="text-center">
+                                        <span class="block text-2xl font-bold text-primary" id="modal-votes">0</span>
+                                        <span
+                                            class="text-xs text-gray-700 dark:text-gray-400 uppercase tracking-wide font-semibold">Votes</span>
+                                    </div>
+                                    <button type="button" id="modal-upvote-btn"
+                                        class="inline-flex w-full justify-center rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-indigo-800 sm:w-auto transition-all duration-200 transform active:scale-95 items-center gap-2 border border-transparent focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span data-i18n="btn_upvote">Upvote Issue</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer
+        class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 py-8 mt-12 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-4 text-sm" data-i18n="footer_text">&copy; 2025 CrowdSolve. All rights reserved. | Empowering
+                Civic Action.</p>
+            <div class="flex justify-center space-x-6 text-xl">
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <script src="ai-assistant.js"></script>
+    <script>
+        // Helper to map DB values to Display values
+        function mapCategory(cat) {
+            const map = {
+                'roads': 'Roads', 'pothole': 'Roads',
+                'garbage': 'Garbage',
+                'electricity': 'Electricity', 'streetlight': 'Electricity',
+                'water': 'Water',
+                'public_safety': 'Public Safety'
+            };
+            return map[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+        }
+
+        function mapStatus(status) {
+            const map = {
+                'pending': 'Pending',
+                'in_progress': 'In Progress',
+                'resolved': 'Resolved'
+            };
+            return map[status] || status;
+        }
+
+        function mapPriority(priority) {
+            const map = {
+                'high': 'High',
+                'medium': 'Medium',
+                'low': 'Low'
+            };
+            return map[priority] || priority;
+        }
+
+        // Render Issues Dynamically
+        function renderIssues() {
+            const container = document.getElementById('issues-container');
+            const issues = Database.getAllIssues();
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            issues.forEach(issue => {
+                const category = mapCategory(issue.category);
+                const status = mapStatus(issue.status);
+                const priority = mapPriority(issue.priority);
+
+                // Determine badge colors
+                let catColor = 'bg-gray-100 text-gray-700';
+                if (category === 'Roads') catColor = 'bg-indigo-100 text-indigo-700';
+                if (category === 'Garbage') catColor = 'bg-pink-100 text-pink-700';
+                if (category === 'Electricity') catColor = 'bg-amber-100 text-amber-700';
+                if (category === 'Water') catColor = 'bg-blue-100 text-blue-700';
+                if (category === 'Public Safety') catColor = 'bg-purple-100 text-purple-700';
+
+                let statusColor = 'bg-gray-100 text-gray-700';
+                if (status === 'Pending') statusColor = 'bg-red-100 text-red-700';
+                if (status === 'In Progress') statusColor = 'bg-yellow-100 text-yellow-700';
+                if (status === 'Resolved') statusColor = 'bg-secondary text-white';
+
+                let priorityColor = 'bg-gray-500';
+                if (priority === 'High') priorityColor = 'bg-red-600';
+                if (priority === 'Medium') priorityColor = 'bg-yellow-500';
+                if (priority === 'Low') priorityColor = 'bg-green-500';
+
+                // Translation keys for badges
+                const catKey = `filter_cat_${category.toLowerCase().split(' ')[0] === 'public' ? 'safety' : category.toLowerCase()}`;
+                const statusKey = `filter_status_${status.toLowerCase().replace(' ', '_') === 'in_progress' ? 'progress' : status.toLowerCase()}`;
+                const priorityKey = `filter_priority_${priority.toLowerCase()}`;
+
+                const card = document.createElement('div');
+                card.className = 'bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] issue-card border border-gray-100 dark:border-gray-700';
+                card.setAttribute('data-category', category);
+                card.setAttribute('data-status', status);
+                card.setAttribute('data-priority', priority);
+
+                card.innerHTML = `
+                <div class="h-40 relative">
+                    <img src="${issue.imageUrl || 'https://via.placeholder.com/400x200?text=No+Image'}" alt="${issue.title}" class="w-full h-full object-cover">
+                    ${issue.votes > 10 ? `
+                    <span class="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full bg-red-600 text-white shadow-md" data-i18n="card_trending">
+                        <i class="fas fa-fire mr-1"></i>TRENDING
+                    </span>` : ''}
+                </div>
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full ${catColor} category-badge" data-category="${category}" data-i18n="${catKey}">${category}</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full ${statusColor} status-badge" data-status="${status}" data-i18n="${statusKey}">${status}</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 truncate text-gray-900 dark:text-white">${issue.title}</h3>
+                    <div class="flex justify-start items-center mb-3">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full ${priorityColor} text-white priority-badge" data-priority="${priority}">
+                            <i class="fas fa-exclamation-circle mr-1"></i><span data-i18n="${priorityKey}">${priority}</span> <span data-i18n="label_priority">Priority</span>
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 flex items-center truncate">
+                        <i class="fas fa-map-marker-alt mr-2 text-primary"></i>${issue.address || 'Unknown Location'}
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-700 dark:text-gray-400">
+                        <span><i class="fas fa-user-circle mr-1 text-gray-500"></i>User #${issue.reporterId}</span>
+                        <span class="flex items-center text-primary font-bold"><i class="fas fa-arrow-up mr-1"></i><span id="vote-count-${issue.id}">${issue.votes || 0}</span></span>
+                    </div>
+                    <button type="button" onclick="window.openModal('${issue.id}')" class="mt-4 w-full block text-center bg-primary text-white font-semibold py-2 rounded-xl hover:bg-indigo-700 transition duration-300 cursor-pointer" style="touch-action: manipulation;">
+                        <span data-i18n="card_view_details">View Details</span> <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            `;
+                container.appendChild(card);
+            });
+
+            // Apply translations to new elements
+            if (window.updateLanguage && window.currentLang) {
+                window.updateLanguage(window.currentLang);
+            }
+
+            // Apply filters
+            filterIssues();
+        }
+
+        // Vote Tracking Helpers
+        function getVotedIssues() {
+            return JSON.parse(localStorage.getItem('votedIssues') || '[]');
+        }
+
+        function hasVoted(id) {
+            return getVotedIssues().includes(id);
+        }
+
+        function saveVote(id) {
+            const voted = getVotedIssues();
+            if (!voted.includes(id)) {
+                voted.push(id);
+                localStorage.setItem('votedIssues', JSON.stringify(voted));
+            }
+        }
+
+        // Modal Functions
+        let currentIssueId = null;
+
+        window.openModal = function (id) {
+            console.log('Opening modal for issue ID:', id);
+            // alert('Debug: Open Modal Clicked for ID: ' + id); // Temporary Debugging
+            currentIssueId = Number(id); // Ensure valid number comparison
+            const issue = Database.getIssueById(currentIssueId);
+
+            if (!issue) {
+                console.error('Issue not found for ID:', currentIssueId);
+                return;
+            }
+
+            // Populate Modal
+            const imgEl = document.getElementById('modal-image');
+            imgEl.src = issue.imageUrl || 'https://via.placeholder.com/400x200?text=No+Image';
+
+            document.getElementById('modal-title').innerText = issue.title;
+            document.getElementById('modal-address').innerText = issue.address || 'Unknown Location';
+            document.getElementById('modal-description').innerText = issue.description;
+            document.getElementById('modal-reporter').innerText = issue.reporterName || 'Anonymous';
+            document.getElementById('modal-votes').innerText = issue.votes || 0;
+
+            // Format Date
+            const date = new Date(issue.createdAt);
+            document.getElementById('modal-date').innerText = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+            // Badges
+            const category = mapCategory(issue.category);
+            const status = mapStatus(issue.status);
+
+            const badgesContainer = document.getElementById('modal-badges');
+            badgesContainer.innerHTML = `
+                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/90 text-gray-800 shadow-sm backdrop-blur-sm">${category}</span>
+                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/90 text-gray-800 shadow-sm backdrop-blur-sm">${status}</span>
+            `;
+
+            // Setup Upvote Button State
+            const upvoteBtn = document.getElementById('modal-upvote-btn');
+            if (hasVoted(currentIssueId)) {
+                upvoteBtn.disabled = true;
+                upvoteBtn.innerHTML = '<i class="fas fa-check"></i> <span data-i18n="btn_voted">Voted!</span>';
+                upvoteBtn.classList.remove('bg-primary', 'hover:bg-indigo-800');
+                upvoteBtn.classList.add('bg-green-600', 'cursor-not-allowed', 'opacity-90');
+                upvoteBtn.onclick = null;
+            } else {
+                upvoteBtn.disabled = false;
+                upvoteBtn.innerHTML = '<i class="fas fa-thumbs-up"></i> <span data-i18n="btn_upvote">Upvote Issue</span>';
+                upvoteBtn.classList.add('bg-primary', 'hover:bg-indigo-800');
+                upvoteBtn.classList.remove('bg-green-600', 'cursor-not-allowed', 'opacity-90');
+
+                upvoteBtn.onclick = function () {
+                    handleUpvote(currentIssueId);
+                };
+            }
+
+            // Apply translations to modal
+            if (window.updateLanguage && window.currentLang) {
+                window.updateLanguage(window.currentLang);
+            }
+
+            // Show Modal
+            const modal = document.getElementById('issue-details-modal');
+            modal.classList.remove('hidden');
+            modal.style.display = 'block'; // Force display for mobile reliability
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('issue-details-modal');
+            modal.classList.add('hidden');
+            modal.style.display = 'none'; // Ensure hidden
+            currentIssueId = null;
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function handleUpvote(id) {
+            if (hasVoted(id)) return;
+
+            const result = Database.voteIssue(id);
+            if (result.success) {
+                // Save vote locally
+                saveVote(id);
+
+                // Update Modal UI
+                document.getElementById('modal-votes').innerText = result.issue.votes;
+
+                // Update Card UI (in background)
+                const cardVoteEl = document.getElementById(`vote-count-${id}`);
+                if (cardVoteEl) {
+                    cardVoteEl.innerText = result.issue.votes;
+                }
+
+                // Update Button UI
+                const btn = document.getElementById('modal-upvote-btn');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-check"></i> <span data-i18n="btn_voted">Voted!</span>';
+                btn.classList.remove('bg-primary', 'hover:bg-indigo-800');
+                btn.classList.add('bg-green-600', 'cursor-not-allowed', 'opacity-90');
+
+                // Refresh translations for the new "Voted" text
+                if (window.updateLanguage && window.currentLang) {
+                    window.updateLanguage(window.currentLang);
+                }
+            }
+        }
+
+        // JS for filtering and searching issues
+        function filterIssues() {
+            const category = document.getElementById('filter-category').value;
+            const status = document.getElementById('filter-status').value;
+            const priority = document.getElementById('filter-priority').value;
+            const searchTerm = document.getElementById('search-issues').value.toLowerCase();
+            const cards = document.querySelectorAll('.issue-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const cardStatus = card.getAttribute('data-status');
+                const cardPriority = card.getAttribute('data-priority');
+                const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+
+                const categoryMatch = category === 'all' || cardCategory === category;
+                const statusMatch = status === 'all' || cardStatus === status;
+                const priorityMatch = priority === 'all' || cardPriority === priority;
+                const searchMatch = cardTitle.includes(searchTerm);
+
+                if (categoryMatch && statusMatch && priorityMatch && searchMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no issues message
+            const noIssuesMessage = document.getElementById('no-issues-message');
+            if (visibleCount === 0) {
+                noIssuesMessage.style.display = 'block';
+            } else {
+                noIssuesMessage.style.display = 'none';
+            }
+        }
+
+        document.getElementById('filter-category').addEventListener('change', filterIssues);
+        document.getElementById('filter-status').addEventListener('change', filterIssues);
+        document.getElementById('filter-priority').addEventListener('change', filterIssues);
+        document.getElementById('search-issues').addEventListener('keyup', filterIssues);
+
+        // Initialize call to load and show issues
+        renderIssues();
+    </script>
+</body>
+
+</html>

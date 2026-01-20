@@ -1,0 +1,432 @@
+/* Custom CSS for Smooth Scrolling and Keyframes */
+/* This file is mainly for animations and Dark Mode visual tweaks */
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base body style for smooth transitions, especially for dark mode */
+/* Base body style for smooth transitions, especially for dark mode */
+body {
+    transition: background-color 0.3s, color 0.3s;
+    background: linear-gradient(-45deg, #f8fafc, #e0e7ff, #dbeafe, #f1f5f9);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    min-height: 100vh;
+}
+
+/* Keyframes for Hero Section Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply animations to Hero elements */
+.animate-fadeInDown {
+    animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+.animate-fadeInUp.delay-100 {
+    animation-delay: 0.3s;
+}
+
+.animate-fadeInUp.delay-200 {
+    animation-delay: 0.5s;
+}
+
+.animate-fadeInRight {
+    animation: fadeInRight 0.8s ease-out forwards;
+    animation-delay: 0.7s;
+}
+
+/* Card Hover Animation (used in features) */
+.card-animation {
+    transition: all 0.3s ease;
+}
+
+/* Dark Mode Styles (via .dark class added by script.js) */
+.dark body {
+    background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #020617);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    color: #E5E7EB;
+    /* Light Text */
+}
+
+.dark .bg-white {
+    background-color: #374151 !important;
+    /* Darker Card Background */
+    color: #E5E7EB;
+}
+
+.dark .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.dark .border-gray-300 {
+    border-color: #4B5563;
+}
+
+.dark .bg-bg-light {
+    background-color: #1F2937;
+}
+
+.dark .bg-gray-50 {
+    background-color: #1F2937;
+    /* Darker background for nested elements */
+    color: #E5E7EB;
+    border-color: #4B5563;
+}
+
+.dark nav {
+    background-color: #374151 !important;
+    border-bottom-color: #4B5563;
+}
+
+/* Dark mode status badge adjustments if needed */
+
+/* Dark mode form inputs - FIX FOR BLURRY TEXT */
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="number"],
+.dark textarea,
+.dark select {
+    background-color: #374151;
+    color: #F9FAFB;
+    border-color: #4B5563;
+}
+
+/* Force Green Color for Language Selector */
+#lang-selector,
+#mobile-lang-selector {
+    background-color: #16a34a !important;
+    /* Tailwind green-600 */
+    border-color: #16a34a !important;
+    color: white !important;
+}
+
+#mobile-lang-selector {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+    color: #9CA3AF;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+    border-color: #6366F1;
+    background-color: #374151;
+}
+
+/* Upvote Animation */
+@keyframes pulseOnce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 10px #22C55E;
+    }
+
+    100% {
+        transform: scale(1.01);
+    }
+}
+
+.animate-pulseOnce {
+    animation: pulseOnce 0.5s ease-out 1;
+}
+
+/* Team card styles - visually distinct, left-aligned panel */
+.team-card {
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border-left: 4px solid #4F46E5;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+    .team-card {
+        background: linear-gradient(180deg, #374151, #1f2937);
+        color: #E5E7EB;
+        border-left-color: #6366F1;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    }
+}
+
+.team-card h4 {
+    margin: 0 0 0.5rem 0;
+}
+
+.team-card ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+/* Light Mode Primary/Secondary Colors */
+.text-primary {
+    color: #4F46E5;
+    /* Strong Indigo */
+}
+
+.text-secondary {
+    color: #16A34A;
+    /* Strong Green */
+}
+
+/* Dark Mode Text Overrides for dynamic classes */
+.dark .text-primary {
+    color: #818cf8;
+    /* Lighter Indigo for Dark Mode */
+}
+
+.dark .text-secondary {
+    color: #4ade80;
+    /* Lighter Green */
+}
+
+/* Fix for badge text visibility - Force dark text on bright backgrounds */
+.bg-indigo-50,
+.bg-green-50,
+.bg-yellow-50 {
+    color: #1F2937 !important;
+    /* Force dark text on light backgrounds */
+}
+
+/* Ensure all text inside bright background badges is visible */
+.bg-indigo-50 *,
+.bg-green-50 *,
+.bg-yellow-50 * {
+    color: #1F2937 !important;
+    font-weight: 700 !important;
+    /* Make text bold for better readability */
+}
+
+/* Dark mode badge fixes */
+.dark .bg-indigo-900\/50,
+.dark .bg-green-900\/30,
+.dark .bg-yellow-900\/40 {
+    color: #F9FAFB !important;
+}
+
+.dark .bg-indigo-900\/50 *,
+.dark .bg-green-900\/30 *,
+.dark .bg-yellow-900\/40 * {
+    color: #F9FAFB !important;
+    font-weight: 700 !important;
+}
+
+/* Animated Burger Menu */
+.burger {
+    position: relative;
+    width: 40px;
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+}
+
+.burger input {
+    display: none;
+}
+
+.burger span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #374151;
+    /* Dark gray for light mode */
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.burger span:nth-of-type(1) {
+    top: 0px;
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+    top: 100%;
+    transform-origin: left center;
+    transform: translateY(-100%);
+}
+
+.burger input:checked~span:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 0px;
+    left: 5px;
+}
+
+.burger input:checked~span:nth-of-type(2) {
+    width: 0%;
+    opacity: 0;
+}
+
+.burger input:checked~span:nth-of-type(3) {
+    transform: rotate(-45deg);
+    top: 28px;
+    left: 5px;
+}
+
+/* Dark mode burger menu - light colored lines */
+.dark .burger span {
+    background: #F3F4F6;
+    /* Very light gray for dark mode */
+}
+
+/* --- Navbar Animations --- */
+
+/* Sliding Underline for Nav Links */
+.nav-link-ltr {
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 2px;
+}
+
+.nav-link-ltr::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 2px;
+    right: 0;
+    background: #4F46E5;
+    /* text-primary color */
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+}
+
+.nav-link-ltr:hover::after {
+    width: 100%;
+    left: 0;
+    background: #4F46E5;
+}
+
+.dark .nav-link-ltr::after {
+    background: #818cf8;
+    /* Lighter Indigo for Dark Mode */
+}
+
+/* Button Bounce Effect */
+.nav-btn-animated {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-btn-animated:hover {
+    transform: scale(1.1);
+}
+
+.nav-btn-animated:active {
+    transform: scale(0.95);
+}
+
+/* Logo Animation */
+.nav-logo-animated:hover i {
+    animation: rotate-logo 0.5s ease-in-out;
+}
+
+@keyframes rotate-logo {
+    0% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/* Mobile Menu Slide In */
+#mobile-menu {
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+#mobile-menu.active {
+    max-height: 500px;
+    opacity: 1;
+    padding-bottom: 1rem;
+}

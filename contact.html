@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us – CrowdSolve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="ai-assistant.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4F46E5', // Indigo
+                        'secondary': '#22C55E', // Emerald
+                        'bg-light': '#F3F4F6', // Light Gray
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white antialiased transition-colors duration-300"
+    style="padding-top: 64px;">
+    <nav
+        class="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-lg z-50 transition-colors duration-300 border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex-shrink-0 text-2xl font-bold text-primary nav-logo-animated">
+                    <i class="fas fa-bullhorn mr-2"></i>CrowdSolve
+                </a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_home">Home</a>
+                    <a href="issues.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_view_issues">View Issues</a>
+                    <a href="report.html?v=1"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_report_issue">Report Issue</a>
+                    <a href="about.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_about">About Us</a>
+                    <a href="contact.html"
+                        class="text-primary dark:text-white font-bold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_contact">Contact</a>
+                    <button id="dark-mode-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 nav-btn-animated"
+                        aria-label="Toggle dark mode">
+                        <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                    </button>
+                    <div class="relative inline-block text-left nav-btn-animated">
+                        <select id="lang-selector"
+                            class="block w-full pl-3 pr-10 py-2 text-lg border-green-600 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-base rounded-md cursor-pointer bg-green-600 font-bold text-white hover:bg-green-700 transition duration-150 appearance-none">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <label class="burger md:hidden" for="burger">
+                    <input type="checkbox" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+            id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_home">Home</a>
+                <a href="issues.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_view_issues">View Issues</a>
+                <a href="report.html?v=1"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_report_issue">Report Issue</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_about">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 rounded-md text-base font-bold bg-primary text-white shadow-md"
+                    data-i18n="nav_contact">Contact</a>
+                <div
+                    class="px-3 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-4">
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                        data-i18n="nav_toggle_theme">Toggle Theme</span>
+                    <button id="mobile-dark-mode-toggle"
+                        class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-150">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="px-3 py-2">
+                    <label for="mobile-lang-selector"
+                        class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                        <i class="fas fa-language mr-2"></i><span data-i18n="nav_select_lang">Select
+                            Language</span></label>
+                    <select id="mobile-lang-selector"
+                        class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md transition-colors duration-200">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="mr">मराठी (Marathi)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                        <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-12 md:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-8 text-center"><i
+                    class="fas fa-headset mr-2 text-primary"></i><span data-i18n="contact_title">Get In Touch</span>
+            </h1>
+
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-2xl">
+                <form id="contact-form">
+                    <div class="mb-6">
+                        <label for="name" class="block text-sm font-semibold text-gray-800 dark:text-gray-300 mb-2"
+                            data-i18n="label_name">Your Name</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-secondary focus:border-secondary transition duration-150 shadow-sm"
+                            placeholder="Raju Rastogi" data-i18n="placeholder_name">
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-semibold text-gray-800 dark:text-gray-300 mb-2"
+                            data-i18n="label_email">Your Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-secondary focus:border-secondary transition duration-150 shadow-sm"
+                            placeholder="Raju@example.com" data-i18n="placeholder_email">
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="message" class="block text-sm font-semibold text-gray-800 dark:text-gray-300 mb-2"
+                            data-i18n="label_message">Message</label>
+                        <textarea id="message" name="message" rows="5" required
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-secondary focus:border-secondary transition duration-150 shadow-sm"
+                            placeholder="How can we help you?" data-i18n="placeholder_message"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-secondary text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:bg-emerald-600 transition duration-300 transform hover:scale-[1.01]">
+                        <i class="fas fa-envelope mr-2"></i><span data-i18n="btn_send_message">Send Message</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="text-center mt-8">
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="contact_support_text">For immediate
+                        technical issues, please
+                        email us at</span> <a href="mailto:support@crowdsolve.io"
+                        class="text-primary dark:text-indigo-400 hover:text-indigo-700 font-medium">support@crowdsolve.io</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer
+        class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 py-8 mt-12 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-4 text-sm" data-i18n="footer_text">&copy; 2025 CrowdSolve. All rights reserved. | Empowering
+                Civic Action.</p>
+            <div class="flex justify-center space-x-6 text-xl">
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="ai-assistant.js"></script>
+    <script>
+        // JS dummy submit alert for contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const successMsg = (window.translations[window.currentLang] && window.translations[window.currentLang]['msg_contact_success']) || '📬 Message sent successfully! We will get back to you within 48 hours.';
+            alert(successMsg);
+            // Clear form (optional)
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>

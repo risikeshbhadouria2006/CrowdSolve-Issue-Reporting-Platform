@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us – CrowdSolve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="ai-assistant.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4F46E5', // Indigo
+                        'secondary': '#22C55E', // Emerald
+                        'bg-light': '#F3F4F6', // Light Gray
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white antialiased transition-colors duration-300"
+    style="padding-top: 64px;">
+    <nav
+        class="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-lg z-50 transition-colors duration-300 border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex-shrink-0 text-2xl font-bold text-primary nav-logo-animated">
+                    <i class="fas fa-bullhorn mr-2"></i>CrowdSolve
+                </a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_home">Home</a>
+                    <a href="issues.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_view_issues">View Issues</a>
+                    <a href="report.html?v=1"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_report_issue">Report Issue</a>
+                    <a href="about.html"
+                        class="text-primary dark:text-white font-bold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_about">About Us</a>
+                    <a href="contact.html"
+                        class="text-gray-800 dark:text-gray-300 hover:text-primary font-semibold text-lg transition duration-150 nav-link-ltr"
+                        data-i18n="nav_contact">Contact</a>
+                    <button id="dark-mode-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 nav-btn-animated"
+                        aria-label="Toggle dark mode">
+                        <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                    </button>
+
+                    <div class="relative inline-block text-left nav-btn-animated">
+                        <select id="lang-selector"
+                            class="block w-full pl-3 pr-10 py-2 text-lg border-green-600 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-base rounded-md cursor-pointer bg-green-600 font-bold text-white hover:bg-green-700 transition duration-150 appearance-none">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                            <option value="kn">कನ್ನಡ (Kannada)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <label class="burger md:hidden" for="burger">
+                    <input type="checkbox" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+            id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_home">Home</a>
+                <a href="issues.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_view_issues">View Issues</a>
+                <a href="report.html?v=1"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_report_issue">Report Issue</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-bold bg-primary text-white shadow-md"
+                    data-i18n="nav_about">About Us</a>
+                <a href="contact.html"
+                    class="block px-3 py-2 rounded-md text-base font-semibold text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors duration-200"
+                    data-i18n="nav_contact">Contact</a>
+                <div
+                    class="px-3 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-4">
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                        data-i18n="nav_toggle_theme">Toggle Theme</span>
+                    <button id="mobile-dark-mode-toggle"
+                        class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-150">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="px-3 py-2">
+                    <label for="mobile-lang-selector"
+                        class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                        <i class="fas fa-language mr-2"></i><span data-i18n="nav_select_lang">Select
+                            Language</span></label>
+                    <select id="mobile-lang-selector"
+                        class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md transition-colors duration-200">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="mr">मराठी (Marathi)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                        <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-12 md:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-8 text-center"><i
+                    class="fas fa-users-cog mr-2 text-primary"></i><span data-i18n="about_title">About CrowdSolve</span>
+            </h1>
+
+            <div class="bg-white dark:bg-gray-800 p-6 sm:p-10 rounded-3xl shadow-2xl transition-colors duration-300">
+                <h2
+                    class="text-2xl font-bold text-gray-900 dark:text-white mb-4 border-b border-gray-100 dark:border-gray-700 pb-2">
+                    <i class="fas fa-lightbulb mr-2 text-secondary"></i><span data-i18n="about_purpose_title">Our
+                        Purpose</span>
+                </h2>
+                <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed" data-i18n="about_purpose_desc">
+                    CrowdSolve is a **Civic Issue Reporting & Resolution System** built to bridge the communication gap
+                    between citizens and local authorities. We believe that an empowered, engaged community is the key
+                    to a better-maintained city. Our platform provides a simple, transparent, and efficient way for
+                    anyone to report common civic issues—from a broken streetlight to a major water leak.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3"><i
+                                class="fas fa-rocket mr-2 text-primary"></i><span data-i18n="about_mission_title">Our
+                                Mission</span></h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="about_mission_desc">
+                            To create a transparent, user-friendly ecosystem where every reported civic issue is logged,
+                            tracked, and ultimately resolved with accountability and speed.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3"><i
+                                class="fas fa-eye mr-2 text-primary"></i><span data-i18n="about_vision_title">Our
+                                Vision</span></h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="about_vision_desc">
+                            To be the leading platform for community-driven urban maintenance, fostering a culture of
+                            collective responsibility and civic pride in every neighborhood.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 text-center">
+                    <a href="issues.html"
+                        class="inline-block bg-primary text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                        <span data-i18n="btn_see_issues">See Issues in Action</span> <i
+                            class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer
+        class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 py-8 mt-12 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-4 text-sm" data-i18n="footer_text">&copy; 2025 CrowdSolve. All rights reserved. | Empowering
+                Civic Action.</p>
+            <div class="flex justify-center space-x-6 text-xl">
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary transition duration-200"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="ai-assistant.js"></script>
+</body>
+
+</html>

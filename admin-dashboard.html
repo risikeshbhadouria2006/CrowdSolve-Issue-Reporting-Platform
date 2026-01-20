@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Smart City Civic Reporting</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i data-lucide="building-2"></i>
+                <span>SmartCity Admin</span>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-link active">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i data-lucide="clipboard-list"></i>
+                    <span>Issue Management</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i data-lucide="users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="menu-link">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="menu-link">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="header">
+                <div class="welcome-section">
+                    <h1>Civic Dashboard</h1>
+                    <p class="text-muted">Welcome back, Admin. Here's what's happening today.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                        <i data-lucide="sun" id="themeIcon"></i>
+                    </button>
+                    <button class="btn btn-outline" onclick="location.reload()">
+                        <i data-lucide="refresh-cw"></i>
+                        Refresh
+                    </button>
+                    <button class="btn btn-primary">
+                        Export Report
+                    </button>
+                </div>
+            </header>
+
+            <!-- Summary Cards -->
+            <section class="stats-grid">
+                <div class="stat-card total">
+                    <div class="stat-header">
+                        <div class="stat-icon"><i data-lucide="folders"></i></div>
+                        <span class="badge badge-resolved">+12%</span>
+                    </div>
+                    <div class="stat-value">1,284</div>
+                    <div class="stat-label">Total Issues</div>
+                </div>
+                <div class="stat-card pending">
+                    <div class="stat-header">
+                        <div class="stat-icon"><i data-lucide="clock"></i></div>
+                        <span class="badge badge-pending">High</span>
+                    </div>
+                    <div class="stat-value">142</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card in-progress">
+                    <div class="stat-header">
+                        <div class="stat-icon"><i data-lucide="activity"></i></div>
+                        <span class="badge badge-progress">Active</span>
+                    </div>
+                    <div class="stat-value">86</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                <div class="stat-card resolved">
+                    <div class="stat-header">
+                        <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+                        <span class="badge badge-resolved">94%</span>
+                    </div>
+                    <div class="stat-value">1,056</div>
+                    <div class="stat-label">Resolved</div>
+                </div>
+            </section>
+
+            <!-- Issues Table -->
+            <section class="content-card">
+                <div class="card-header">
+                    <h3>Recent Reported Issues</h3>
+                    <div class="action-btns">
+                        <button class="btn btn-outline btn-sm">Filter</button>
+                        <button class="btn btn-outline btn-sm">Sort</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Votes</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issuesTableBody">
+                            <!-- JS will populate this -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section class="charts-grid">
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>Issue Trends</h3>
+                    </div>
+                    <div style="padding: 1.5rem; height: 300px;">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>By Category</h3>
+                    </div>
+                    <div style="padding: 1.5rem; height: 300px;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+
+</html>
